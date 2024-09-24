@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Проекты{% endblock %}
+
+{% block content %}
+    <h2>Список проектов</h2>
+    <div class="projects">
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <!-- Заглушка для изображения проекта -->
+                        <!-- <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}"> -->
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">{{ project.description|truncatewords:30 }}</p>
+                            <!-- Заглушка для детальной страницы проекта -->
+                            <a href="#" class="btn btn-primary">Подробнее</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Создано: {{ project.created_at|date:"d.m.Y" }}
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>Нет доступных проектов.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

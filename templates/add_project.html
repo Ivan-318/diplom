@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить проект{% endblock %}
+
+{% block content %}
+    <h2>Добавить новый проект</h2>
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.title.label_tag }}
+            {{ form.title }}
+            {% if form.title.errors %}
+                <div class="text-danger">
+                    {{ form.title.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.description.label_tag }}
+            {{ form.description }}
+            {% if form.description.errors %}
+                <div class="text-danger">
+                    {{ form.description.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить проект</button>
+    </form>
+{% endblock %}

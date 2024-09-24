@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+    <main class="main-content">
+        <div class="mb-4">
+            <h2>Добро пожаловать в систему управления микроклиматом теплицы</h2>
+            <p>Эта система предназначена для автоматизации контроля температуры, влажности и вентиляции в теплицах с использованием современных решений для повышения урожайности и снижения затрат.</p>
+        </div>
+
+        <section class="features mb-4">
+            <h3>Особенности системы</h3>
+            <ul>
+                <li>Автоматическое управление температурой</li>
+                <li>Регулировка уровня влажности</li>
+                <li>Эффективная вентиляция для теплиц</li>
+                <li>Снижение затрат на эксплуатацию</li>
+            </ul>
+        </section>
+
+        <section class="cta bg-primary text-white p-4 text-center mb-4">
+            <h3>Начните работу с нашей системой уже сегодня!</h3>
+            <a href="{% url 'project_list' %}" class="btn btn-light">Посмотреть проекты</a>
+        </section>
+
+        <section class="latest-projects">
+            <h3>Последние проекты</h3>
+            <div class="row">
+                {% for project in projects %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <!-- Заглушка для изображения проекта -->
+                            <!-- <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}"> -->
+                            <div class="card-body">
+                                <h5 class="card-title">{{ project.title }}</h5>
+                                <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+                                <!-- Заглушка для детальной страницы проекта -->
+                                <a href="#" class="btn btn-primary">Подробнее</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Создано: {{ project.created_at|date:"d.m.Y" }}
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>Нет доступных проектов.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock %}
