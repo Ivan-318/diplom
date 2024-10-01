@@ -4,7 +4,7 @@
 
 {% block content %}
     <h2>Добавить новый проект</h2>
-    <form method="post" class="mt-4">
+    <form method="post" enctype="multipart/form-data" class="mt-4">
         {% csrf_token %}
         <div class="mb-3">
             {{ form.title.label_tag }}
@@ -21,6 +21,15 @@
             {% if form.description.errors %}
                 <div class="text-danger">
                     {{ form.description.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.featured_image.label_tag }}
+            {{ form.featured_image }}
+            {% if form.featured_image.errors %}
+                <div class="text-danger">
+                    {{ form.featured_image.errors }}
                 </div>
             {% endif %}
         </div>

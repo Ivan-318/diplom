@@ -1,17 +1,11 @@
-/* Общие стили */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Главная контент */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: #f9f9f9;
 }
 
-/* Главная контент */
+/* Заголовки */
 .main-content h2 {
     color: #005a9c;
     font-size: 26px;
@@ -44,9 +38,31 @@ body {
     margin-bottom: 15px;
 }
 
+/* Стиль карточек */
+.latest-projects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
 .latest-projects .card {
-    /* Для обеспечения одинаковой высоты карточек */
-    height: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 300px; /* Устанавливаем одинаковую ширину */
+    height: 400px; /* Устанавливаем одинаковую высоту */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.latest-projects .card img {
+    max-width: 100%;
+    height: auto; /* Сохраняем пропорции изображений */
+    object-fit: cover; /* Обрезаем изображение, чтобы оно соответствовало карточке */
+    border-radius: 4px;
 }
 
 .text-danger {
