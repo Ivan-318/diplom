@@ -1,9 +1,12 @@
+# projects/views.py
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Project, Review
-from .forms import ProjectForm, ReviewForm, SignUpForm
+from .models import Project, Review, Category, Product
+from .forms import ProjectForm, ReviewForm, ProductForm, SignUpForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login
+from django.views.generic import ListView, DetailView
 
 
 def index(request):
@@ -92,3 +95,31 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+class ProductListView(ListView):
+    model = Product
+    template_name = 'product_list.html'
+    context_object_name = 'products'
+    paginate_by = 4
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'product_detail.html'
+    context_object_name = 'product'
+
+
+def product_list(request):
+    products = Product.objects.all().order_by('-created_at')
+    paginator = Paginator(products, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'products': page_obj,  # Список товаров на текущей странице
+        'is_paginated': page_obj.has_other_pages(),  # Проверка наличия других страниц
+        'page_obj': page_obj,  # Объект страницы для пагинации
+    }
+
+    return render(request, 'product_list.html', context)

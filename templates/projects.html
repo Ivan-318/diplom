@@ -9,7 +9,7 @@
             {% for project in projects %}
                 <div class="col-md-4 mb-3">
                     <div class="card h-100">
-                        <img src="{{ project.featured_image.url }}" class="card-img-top" alt="{{ project.title }}">
+                        <img src="{{ project.featured_image.url }}" class="card-img-top uniform-image" alt="Изображение проекта {{ forloop.counter }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ project.title }}</h5>
                             <p class="card-text">{{ project.description|truncatewords:30 }}</p>

@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/styless.css' %}" type="text/css">
 </head>
 <body>
     <div class="d-flex flex-column min-vh-100">
@@ -32,6 +32,10 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'add_project' %}">Добавить проект</a>
+                        </li>
+                        <!-- Добавляем ссылку на товары -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'product_list' %}">Товары</a>
                         </li>
                         {% if user.is_authenticated %}
                             <li class="nav-item">

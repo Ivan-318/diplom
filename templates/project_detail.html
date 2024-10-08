@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="card mb-4">
-        <img src="{{ project.featured_image.url }}" class="card-img-top" alt="{{ project.title }}">
+        <img src="{{ project.featured_image.url }}" class="card-img-top uniform-image" alt="{{ project.title }}">
         <div class="card-body">
             <h3 class="card-title">{{ project.title }}</h3>
             <p class="card-text">{{ project.description }}</p>
@@ -72,7 +72,7 @@
         {% endif %}
     </div>
 
-    <div class="reviews">
+    <div class="reviews mb-4">
         <h4>Отзывы</h4>
         {% if reviews %}
             <ul class="list-group">
@@ -91,6 +91,31 @@
             </ul>
         {% else %}
             <p>Отзывов пока нет.</p>
+        {% endif %}
+    </div>
+
+    <div class="related-products">
+        <h4>Используемое оборудование</h4>
+        {% if project.products.all %}
+            <div class="row">
+                {% for product in project.products.all %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <img src="{{ product.image.url }}" class="card-img-top uniform-image" alt="{{ product.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description|truncatewords:15 }}</p>
+                                <a href="{% url 'product_detail' product.pk %}" class="btn btn-primary">Подробнее</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Категория: {{ product.category.name }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>В этом проекте пока не используется оборудование.</p>
         {% endif %}
     </div>
 {% endblock %}
