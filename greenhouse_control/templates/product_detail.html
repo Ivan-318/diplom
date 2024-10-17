@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    <div class="card mb-4">
+        <!-- Добавляем класс uniform-image для контроля размера изображения -->
+        <img src="{{ product.image.url }}" class="card-img-top uniform-image" alt="Изображение продукта {{ product.name }}">
+        <div class="card-body">
+            <h3 class="card-title">{{ product.name }}</h3>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text">
+                <strong>Цена:</strong> {{ product.price }} ₽
+            </p>
+            <p class="card-text">
+                <small class="text-muted">Категория: {{ product.category.name }}</small>
+            </p>
+            <!-- Форма добавления в корзину -->
+            <form method="post" action="{% url 'cart_add' product.id %}" class="mt-3">
+                {% csrf_token %}
+                <div class="input-group" style="max-width: 220px;">
+                    <input type="number" name="quantity" value="1" min="1" class="form-control" placeholder="Количество">
+                    <button type="submit" class="btn btn-success">Добавить в корзину</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h4>Связанные проекты</h4>
+    {% if product.projects.all %}
+        <ul class="list-group mb-4">
+            {% for project in product.projects.all %}
+                <li class="list-group-item">
+                    <a href="{% url 'project_detail' project.pk %}">{{ project.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Нет связанных проектов.</p>
+    {% endif %}
+{% endblock %}
