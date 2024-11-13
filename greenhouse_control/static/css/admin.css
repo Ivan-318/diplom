@@ -1,0 +1,26 @@
+#header, .module caption{
+    background: #917691;
+}
+.breadcrumbs{
+    background: #372d37 !important;
+}
+
+input[type="submit"][name="_save"]{
+    border: 1px solid #333;
+    background: #524e4e;
+}
+
+input[type="submit"][name="_addanother"]{
+    border: 1px solid #333;
+    background: #524e4e;
+}
+
+input[type="submit"][name="_continue"]{
+    border: 1px solid #333;
+    background: #524e4e;
+}
+
+a:link, a:visited{
+    color: grey;
+    font-size: 14px;
+}
